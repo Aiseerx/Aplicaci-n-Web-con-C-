@@ -1,0 +1,49 @@
+-- Crear la tabla Seguro
+CREATE TABLE Seguro (
+    IdSeguro INT PRIMARY KEY,
+    Tipo VARCHAR(255),
+    Importe DECIMAL(10, 2),
+    FechaImporte DATE,
+    IdEmpleado INT,
+    FOREIGN KEY (IdEmpleado) REFERENCES Empleado(IdEmpleado)
+);
+
+-- Crear la tabla Empleado
+CREATE TABLE Empleado (
+    IdEmpleado INT PRIMARY KEY,
+    Nombre VARCHAR(255),
+    Apellido VARCHAR(255),
+    Genero CHAR(1),
+    FechaNacimiento DATE,
+    IdSeguro INT,
+    IdSalario INT,
+    IdDepartamento INT,
+    FOREIGN KEY (IdSeguro) REFERENCES Seguro(IdSeguro),
+    FOREIGN KEY (IdSalario) REFERENCES Salario(IdSalario),
+    FOREIGN KEY (IdDepartamento) REFERENCES Departamento(IdDepartamento)
+);
+
+-- Crear la tabla Salario
+CREATE TABLE Salario (
+    IdSalario INT PRIMARY KEY,
+    Salario DECIMAL(10, 2),
+    FechaInicio DATE,
+    IdEmpleado INT,
+    FOREIGN KEY (IdEmpleado) REFERENCES Empleado(IdEmpleado)
+);
+
+-- Crear la tabla Departamento
+CREATE TABLE Departamento (
+    IdDepartamento INT PRIMARY KEY,
+    Nombre VARCHAR(255),
+    Area VARCHAR(255)
+);
+
+-- Crear la tabla Titulo
+CREATE TABLE Titulo (
+    IdTitulo INT PRIMARY KEY,
+    Titulo VARCHAR(255),
+    Descripcion TEXT,
+    IdEmpleado INT,
+    FOREIGN KEY (IdEmpleado) REFERENCES Empleado(IdEmpleado)
+);
